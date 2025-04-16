@@ -19,6 +19,6 @@ class SplashPage extends StatelessWidget {
         nextRoute: AppRouteNames.loginPage,
         splashTransition: SplashTransition.slideTransition,
         pageTransitionType: PageTransitionType.leftToRight,
-        backgroundColor: Color(0xFFd9dfdd));
+        backgroundColor: Theme.of(context).primaryColor);
   }
 }

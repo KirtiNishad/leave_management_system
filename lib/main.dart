@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:leave_management_system/core/routes/app_route_settings.dart';
 import 'package:leave_management_system/core/utils/app_assets.dart';
+import 'package:leave_management_system/core/utils/app_themes.dart';
 import 'package:page_transition/page_transition.dart';
 
 import 'core/widgets/animated_splash_screen.dart';
@@ -34,7 +35,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       title: 'LeaveEase',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor:Color(0xFFe083e8)),
+        colorScheme: AppThemes.lightScheme(
+
+        ),
         useMaterial3: true,
       ),
       routerConfig: AppRouting.routes,

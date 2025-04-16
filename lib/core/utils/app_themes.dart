@@ -3,16 +3,17 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class AppThemes{
+  static const Color primaryColor = Color(0xFFd9dfdd);
 
   static ColorScheme lightScheme() {
     return const ColorScheme(
       brightness: Brightness.light,
-      primary: Color(0xFFd9dfdd),
+      primary: primaryColor,
       surfaceTint: Color(0xff4c662b),
       onPrimary: Color(0xffffffff),
       primaryContainer: Color(0xffcdeda3),
       onPrimaryContainer: Color(0xff354e15),
-      secondary: Color(0xff4d662a),
+      secondary: Color(0xff7e998e),
       onSecondary: Color(0xffffffff),
       secondaryContainer: Color(0xffcfeda2),
       onSecondaryContainer: Color(0xff364e14),

@@ -48,7 +48,7 @@ class _AppTextfieldState extends State<AppTextfield> {
               border: OutlineInputBorder(
                 borderSide: BorderSide(
                     width: 1,
-                    color: Color(0xFFd9dfdd),
+                    color: Theme.of(context).primaryColor,
                     style: BorderStyle.solid),
               ),
               enabled: true,
@@ -58,13 +58,13 @@ class _AppTextfieldState extends State<AppTextfield> {
               enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(
                     width: 1,
-                    color: Color(0xFFd9dfdd),
+                    color: Theme.of(context).primaryColor,
                     style: BorderStyle.solid),
               ),
               focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(
                     width: 1,
-                    color: Color(0xFFd9dfdd),
+                    color: Theme.of(context).primaryColor,
                     style: BorderStyle.solid),
               ),
               filled: true,
@@ -73,7 +73,7 @@ class _AppTextfieldState extends State<AppTextfield> {
               hintStyle: TextStyle(
                   letterSpacing: 0.5,
                   fontWeight: FontWeight.w500,
-                  color: Color(0xFFd9dfdd),
+                  color: Theme.of(context).primaryColor,
                   fontSize: 15.sp)),
         ),
       ],

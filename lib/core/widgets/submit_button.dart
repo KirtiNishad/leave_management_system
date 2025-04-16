@@ -11,7 +11,7 @@ class SubmitButton extends StatelessWidget {
     return ElevatedButton(
         onPressed: onPressed ?? () {},
         style: ButtonStyle(
-            backgroundColor: WidgetStateProperty.all((Color(0xFFd9dfdd))),
+            backgroundColor: WidgetStateProperty.all((Theme.of(context).primaryColor)),
             alignment: Alignment.center,
             elevation: WidgetStateProperty.all(0),
             shape: WidgetStateProperty.all(BeveledRectangleBorder())),
