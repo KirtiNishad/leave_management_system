@@ -15,6 +15,8 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(50.w);
+    print(MediaQuery.of(context).size.width);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -48,7 +50,7 @@ class LoginScreen extends StatelessWidget {
               weight: FontWeight.w900,
               letterSpacing: 1,
             ),
-            Image.asset(AppAssets.logoWhite),
+            Image.asset(AppAssets.logoWhite,height: 300.h, width: 300.w,),
             10.verticalSpace,
             AppTextfield(
               label: "Email",
