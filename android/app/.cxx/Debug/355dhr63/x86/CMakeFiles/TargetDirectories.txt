@@ -1,0 +1,2 @@
+C:/kirti/leave_management_system/android/app/.cxx/Debug/355dhr63/x86/CMakeFiles/edit_cache.dir
+C:/kirti/leave_management_system/android/app/.cxx/Debug/355dhr63/x86/CMakeFiles/rebuild_cache.dir
