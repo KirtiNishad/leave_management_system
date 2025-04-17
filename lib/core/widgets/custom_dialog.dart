@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class CustomDialog {
@@ -5,18 +7,25 @@ class CustomDialog {
     showDialog(
       context: context,
       builder: (context) {
-        return Container(
-            padding: const EdgeInsets.all(30),
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: const [
-                  BoxShadow(
-                      color: Colors.black26, blurRadius: 10, spreadRadius: -5)
-                ]),
-            child: const CircularProgressIndicator(
-              strokeWidth: 0.7,
-            ));
+        return AlertDialog(
+          backgroundColor: Colors.transparent,
+          shape: BeveledRectangleBorder(),
+
+          content: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+            child: Container(
+                padding: const EdgeInsets.all(10),
+                child: Center(
+                  child: CircularProgressIndicator(
+
+                    strokeWidth: 1.5,
+                    strokeCap: StrokeCap.round,
+                    trackGap: 5,
+                    color: Theme.of(context).colorScheme.secondary,
+                  ),
+                )),
+          ),
+        );
       },
     );
   }

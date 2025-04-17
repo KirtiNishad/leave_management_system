@@ -8,6 +8,7 @@ import 'package:leave_management_system/core/utils/app_assets.dart';
 import 'package:leave_management_system/core/utils/app_constants.dart';
 import 'package:leave_management_system/core/utils/app_themes.dart';
 import 'package:leave_management_system/core/widgets/app_textfield.dart';
+import 'package:leave_management_system/core/widgets/custom_dialog.dart';
 import 'package:leave_management_system/core/widgets/submit_button.dart';
 import 'package:leave_management_system/features/auth/bloc/send_otp/send_otp_bloc.dart';
 import 'package:pinput/pinput.dart';
@@ -27,10 +28,14 @@ class LoginScreen extends StatelessWidget {
     return BlocListener<SendOtpBloc, SendOtpState>(
       listener: (context, state) {
         if (state is SendOtpSuccess) {
+          context.pop();
           otpBottomSheet(state.message, bloc.otpController, context);
           // TODO: implement listener
         } else if (state is SendOtpError) {
+          context.pop();
           AppConstants.showErrorSnackbar("Failed!", state.message, context);
+        } else if (state is SendOtpLoading) {
+          CustomDialog.showLoader(context);
         }
       },
       child: Scaffold(
@@ -184,86 +189,86 @@ class LoginScreen extends StatelessWidget {
             padding: EdgeInsets.only(
                 bottom: (MediaQuery.of(context).viewInsets.bottom)),
             child: Container(
-              width: double.infinity,
-              constraints: BoxConstraints(
-                minHeight: (0.30).sh - ScreenUtil().bottomBarHeight,
-                maxHeight: 0.45.sh,
-              ),
-              // height: MediaQuery.of(context).size.height * 0.5,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(24),
-                  gradient: LinearGradient(colors: [
-                    Theme.of(context).primaryColor,
-                    Theme.of(context).colorScheme.secondary
-                  ], stops: [
-                    0.4,
-                    0.8
-                  ], begin: Alignment.bottomCenter, end: Alignment.topCenter)),
-              child: Scaffold(
-                body: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    15.verticalSpace,
-                    Center(
-                      child: AppText(
-                        text: msg,
-                        fontSize: 15.sp,
-                      ),
-                    ),
-                    15.verticalSpace,
-                    Pinput(
-                      controller: controller,
-                      isCursorAnimationEnabled: true,
-                      autofillHints: const [AutofillHints.oneTimeCode],
-                      // listenForMultipleSmsOnAndroid: true,
-                      autofocus: true,
-                      textInputAction: TextInputAction.done,
-                      inputFormatters: [
-                        FilteringTextInputFormatter.digitsOnly,
-                      ],
-                      // smsCodeMatcher: PinputConstants.defaultSmsCodeMatcher,
-                      hapticFeedbackType: HapticFeedbackType.heavyImpact,
-                      enabled: true,
-                      closeKeyboardWhenCompleted: true,
-
-                      defaultPinTheme: PinTheme(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        height: 48.h,
-                        width: 42.w,
-                      ),
-                      length: 4,
-                      // androidSmsAutofillMethod:
-                      //     AndroidSmsAutofillMethod.smsUserConsentApi,
-                    ),
-                    25.verticalSpace,
-                    SubmitButton(
-                        onPressed: () {
-                          if (controller.text.isEmpty ||
-                              controller.text.length < 4) {
-                            AppConstants.showErrorSnackbar(
-                                "OTP Required!", "Please Fill OTP", context);
-                          } else if (controller.text != "1234") {
-                            AppConstants.showErrorSnackbar("Invalid OTP!",
-                                "Please Fill valid OTP", context);
-                          } else {
-                            context.pushReplacementNamed(
-                                AppRouteNames.userDashboard);
-                          }
-                        },
+                width: double.infinity,
+                constraints: BoxConstraints(
+                  minHeight: (0.30).sh - ScreenUtil().bottomBarHeight,
+                  maxHeight: 0.45.sh,
+                ),
+                // height: MediaQuery.of(context).size.height * 0.5,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(24),
+                    gradient: LinearGradient(colors: [
+                      Theme.of(context).primaryColor,
+                      Theme.of(context).colorScheme.secondary
+                    ], stops: [
+                      0.4,
+                      0.8
+                    ], begin: Alignment.bottomCenter, end: Alignment.topCenter)),
+                child:  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      15.verticalSpace,
+                      Center(
                         child: AppText(
-                          text: "Login",
-                          color: Colors.white,
-                        )),
-                  ],
+                          text: msg,
+                          fontSize: 15.sp,
+                        ),
+                      ),
+                      15.verticalSpace,
+                      Pinput(
+                        controller: controller,
+                        isCursorAnimationEnabled: true,
+                        autofillHints: const [AutofillHints.oneTimeCode],
+                        // listenForMultipleSmsOnAndroid: true,
+                        autofocus: true,
+                        textInputAction: TextInputAction.done,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly,
+                        ],
+                        // smsCodeMatcher: PinputConstants.defaultSmsCodeMatcher,
+                        hapticFeedbackType: HapticFeedbackType.heavyImpact,
+                        enabled: true,
+                        closeKeyboardWhenCompleted: true,
+
+                        defaultPinTheme: PinTheme(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          height: 48.h,
+                          width: 42.w,
+                        ),
+                        length: 4,
+                        // androidSmsAutofillMethod:
+                        //     AndroidSmsAutofillMethod.smsUserConsentApi,
+                      ),
+                      25.verticalSpace,
+                      SubmitButton(
+                          onPressed: () {
+                            if (controller.text.isEmpty ||
+                                controller.text.length < 4) {
+                              AppConstants.showErrorSnackbar(
+                                  "OTP Required!", "Please Fill OTP", context);
+                            } else if (controller.text != "1234") {
+                              AppConstants.showErrorSnackbar("Invalid OTP!",
+                                  "Please Fill valid OTP", context);
+                            } else {
+                              context.pushReplacementNamed(
+                                  AppRouteNames.userDashboard);
+                            }
+                          },
+                          child: AppText(
+                            text: "Login",
+                            color: Colors.white,
+                          )),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ));
+
+          );
         });
   }
 }
