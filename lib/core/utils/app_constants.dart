@@ -30,4 +30,8 @@ class AppConstants {
       ..hideCurrentSnackBar()
       ..showSnackBar(snackbar);
   }
+
+  static showLoader(){
+
+  }
 }
